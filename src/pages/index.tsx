@@ -2,7 +2,8 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import LabelList from './shared/labelList'
 import { useState } from 'react'
-import { Annotation, LabelResult, Output } from './shared/labelResult'
+import { LabelResult } from './shared/labelResult'
+import { Annotation, Output } from '@/types/labelsData'
 
 
 
