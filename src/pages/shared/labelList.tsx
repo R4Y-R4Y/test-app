@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Label,  } from "./label";
 
 interface Props {
-  labels: string[];
+  labels: string[]
+  setActiveLabel: Dispatch<SetStateAction<number>>
 }
 
 export default function LabelList(props: Props) {
-  const { labels } = props;
+  const { labels, setActiveLabel } = props;
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {labels.map((label, index) => (
-        <Label title={label} index={index} />
+        <Label title={label} key={index} index={index} setActiveLabel={setActiveLabel} />
       ))}
     </div>
   );

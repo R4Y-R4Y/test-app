@@ -1,41 +1,42 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import uniqolor from "uniqolor";
-
+import styles from "../../styles/Label.module.css"
 const num = (Math.random()*1000000).toString()
 
 export interface LabelProps {
-  title: string;
-  index: number;
+  title: string
+  key: number
+  index: number
+  setActiveLabel: Dispatch<SetStateAction<number>>
 }
 
 export interface LabelTextProps {
   title: string;
   text: string;
-  index: number;
 }
 
-export function Label(props: LabelProps) {
-  const { title } = props;
 
+
+export function Label(props: LabelProps) {
+  const { title, setActiveLabel, index } = props;
   return (
-    <div style={{
-      margin:"10px"
-    }}>
-      <a>
-        <div
-          style={{
-            backgroundColor: uniqolor(title + num).color,
-            borderRadius: "5px",
-            padding: "5px",
-            paddingRight: "25px",
-            textTransform: "uppercase",
-            display: "inline-block",
-            color: "black",
-          }}
-        >
-          {title}
-        </div>
-      </a>
+    <div className={styles.selection} >
+      <div
+        onClick={() => {
+          setActiveLabel(index)
+        }}
+        style={{
+          backgroundColor: uniqolor(title + num).color,
+          borderRadius: "5px",
+          padding: "5px",
+          paddingRight: "25px",
+          textTransform: "uppercase",
+          display: "inline-block",
+          color: "black",
+        }}
+      >
+        {title}
+      </div>
     </div>
   );
 }
@@ -45,40 +46,33 @@ export function LabelText(props: LabelTextProps) {
 
 
   return (
-    <div style={{
-      margin:"10px"
+    <span style={{
+      margin:"3px"
     }}>
-      <a>
-        <div
+      <span
+        style={{
+          backgroundColor: uniqolor(title + num).color,
+          borderRadius: "5px",
+          padding: "6px",
+          textTransform: "capitalize",
+          color: "black",
+        }}
+      >
+        {text}
+        <span
           style={{
-            flex:1,
-            backgroundColor: uniqolor(title + num).color,
+            backgroundColor: "white",
             borderRadius: "5px",
-            padding: "5px",
-            textTransform: "capitalize",
-            display: "inline-block",
+            padding: "2px",
+            margin:"10px",
+            paddingRight: "10px",
+            textTransform: "uppercase",
             color: "black",
           }}
         >
-          {text}
-          <div
-            style={{
-              alignSelf:"flex-end",
-              backgroundColor: "white",
-              borderRadius: "5px",
-              padding: "5px",
-              marginLeft:'10px',
-              marginRight:'10px',
-              paddingRight: "10px",
-              textTransform: "uppercase",
-              display: "inline-block",
-              color: "black",
-            }}
-          >
-            {title}
-          </div>
-        </div>
-      </a>
-    </div>
+          {title}
+        </span>
+      </span>
+    </span>
   );
 }

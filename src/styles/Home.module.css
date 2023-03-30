@@ -8,7 +8,9 @@
   min-height: 100vh;
 }
 
-
+.section{
+  margin-bottom: 40px;
+}
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
